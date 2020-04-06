@@ -1,0 +1,434 @@
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+  </button>
+  <mat-horizontal-stepper [linear]="true" #stepper>
+    
+    <mat-step [stepControl]="firstFormGroup">
+      <div class="container align-self-center">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Basic Information</ng-template>
+        <div class="col-sm-10 mt-4">
+          <div class="card ">
+            <div class="card-header">
+              <h5>Gender</h5>
+            </div>
+            <div class="card-body">
+              <mat-radio-group aria-label="Select an option">
+                <mat-radio-button class="mr-2" value="1">Female</mat-radio-button>
+                <mat-radio-button class="mr-2"  value="2">Male</mat-radio-button>
+                <mat-radio-button  class="mr-2" value="3">Secret</mat-radio-button>
+              </mat-radio-group>        
+            </div>      
+            </div>
+        </div>
+          
+
+        <div class="col-sm-10 mt-4">
+          <div class="card ">
+            <div class="card-header">
+              <h5>Name</h5>
+            </div>
+            <div class="card-body row">
+              <div class="col-3 mr-2 ">
+                <mat-form-field>
+                  <select matNativeControl required>
+                    <option selected>Title</option>
+                    <option value="Mr.">Ms.</option>
+                    <option value="Msc.">Mr.</option>
+                    <option value="Dr.">Dr.</option>
+                  </select> 
+                </mat-form-field>
+                
+              </div>
+              
+         
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                  <input matInput placeholder="First name" formControlName="firstCtrl" >
+                </mat-form-field>
+                  
+                </div>
+  
+                <div class="col-3 mr-2" >
+                  <mat-form-field>
+                  <input matInput placeholder="Last name" formControlName="firstCtrl" required>
+                </mat-form-field>
+                </div>
+            
+              
+              
+            </div>      
+            </div>
+        </div>
+          
+            
+
+            
+        <div class="col-sm-10 mt-4">
+          <div class="card ">
+            <div class="card-header">
+              <h5>Correpondence</h5>
+            </div>
+            <div class="card-body row">
+              
+              
+              <div class="col-3 mr-2 ">
+                <mat-form-field>
+                <input matInput placeholder="Email" formControlName="firstCtrl" required>
+              </mat-form-field>
+                
+              </div>
+
+              <div class="col-3 mr-2" >
+                <mat-form-field>
+                <input matInput placeholder="Phone" formControlName="firstCtrl">
+              </mat-form-field>
+              </div>
+              
+              <div class="col-3 mr-2" >
+                <mat-form-field>
+                <input matInput placeholder="Mobile" formControlName="firstCtrl">
+              </mat-form-field>
+              </div>
+
+              <div class="w-100 d-none d-md-block"></div>
+           
+
+              <div class="col-8" >
+                <mat-form-field style="width: 80%;">
+                  <input  matInput placeholder="Post Address" formControlName="firstCtrl">
+               </mat-form-field>
+              </div>
+            </div>
+            
+            </div>
+        </div>           
+                       
+            
+
+        <div class="mt-4 ml-4 mr-2">
+          <button mat-raised-button class="mr-2"  >Cancel</button>
+          <button mat-raised-button  class="mr-2" >Save</button>
+          <button mat-raised-button matStepperNext class="mr-2" >Next</button>
+        </div>
+      </form>
+       </div>
+
+
+    </mat-step>
+
+    
+    <mat-step [stepControl]="secondFormGroup">
+     
+      <div class="container align-self-center">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Education</ng-template>
+          
+            
+  
+  
+          <div class="col-sm-10 mt-4" *ngFor="let edu of eduList; index as i;">
+            <div class="card ">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-9"><mat-icon>{{ icons[i] }}</mat-icon></div>
+                  <div class="col-1">
+                    <button mat-button ><mat-icon>save</mat-icon></button>
+                  </div>
+                  <div class="col-1">
+                    <button mat-button (click)="deleteOneEduItem(i)"><mat-icon>delete</mat-icon></button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body row">
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <select matNativeControl required>
+                      <option selected>Degree</option>
+                      <option value="Mr.">Bachelor</option>
+                      <option value="Msc.">Master</option>
+                      <option value="Dr.">Doctor</option>
+                    </select> 
+                  </mat-form-field>
+             
+                </div>
+         
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <select matNativeControl required>
+                      <option selected>University</option>
+                      <option value="Mr.">Uni A</option>
+                      <option value="Msc.">Uni B</option>
+                      <option value="Dr.">Uni C</option>
+                    </select> 
+                  </mat-form-field>
+                </div>
+
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <select matNativeControl required>
+                      <option selected>Department</option>
+                      <option value="Mr.">Dept A</option>
+                      <option value="Msc.">Dept B</option>
+                      <option value="Dr.">Dept C</option>
+                    </select> 
+                  </mat-form-field>
+                  
+                </div>
+              
+                <div class="w-100 d-none d-md-block"></div>
+              
+             
+                            
+                
+              
+                <div class="col-3 mr-4">
+                  <mat-form-field>
+                    <mat-label>Start at...</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>                  
+                </div>
+                
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <mat-label>End at...</mat-label>
+                    <input matInput [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>                  
+                </div>
+              
+                <div class="w-100 d-none d-md-block"></div>
+              
+  
+             
+                <div class="col" >
+                  <mat-form-field style="width: 80%;">
+                    <textarea matInput placeholder="Description"></textarea>
+                </mat-form-field>
+                </div>
+              
+
+              </div> 
+              
+              
+              </div>
+          </div>
+            
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button  mat-raised-button color='primary' (click)="addOneEduItem()" >Add education experience</button>
+       
+          </div>          
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button mat-raised-button class="mr-2" >Cancel</button>
+            <button mat-raised-button class="mr-2"  >Save</button>
+            <button mat-raised-button  matStepperPrevious class="mr-2" >Prev</button>
+            <button mat-raised-button  matStepperNext class="mr-2" >Next</button>
+          </div>
+        </form>
+         </div>
+
+
+    </mat-step>
+
+
+    <mat-step [stepControl]="thirdFormGroup">
+     
+      <div class="container align-self-center">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Work Experience</ng-template>
+          
+            
+  
+  
+          <div class="col-sm-10 mt-4" *ngFor="let wep of workExpList; index as i;">
+            <div class="card ">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-9"><mat-icon>{{ icons[i] }}</mat-icon></div>
+                  <div class="col-1">
+                    <button mat-button ><mat-icon>save</mat-icon></button>
+                  </div>
+                  <div class="col-1">
+                    <button mat-button (click)="deleteWorkExperience(i)"><mat-icon>delete</mat-icon></button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body row">
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <input matInput placeholder="Position title" >
+                  </mat-form-field>
+             
+                </div>
+         
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <input matInput placeholder="Institute/Company" >
+                  </mat-form-field>
+                </div>
+
+                
+              
+                <div class="w-100 d-none d-md-block"></div>
+              
+           
+              
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <mat-label>Start at...</mat-label>
+                    <input matInput [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>                  
+                </div>
+                
+                <div class="col-3 mr-2">
+                  <mat-form-field>
+                    <mat-label>End at...</mat-label>
+                    <input matInput [matDatepicker]="picker1">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>                  
+                </div>
+              
+                <div class="w-100 d-none d-md-block"></div>
+              
+  
+             
+                <div class="col" >
+                  <mat-form-field style="width: 80%;">
+                    <textarea matInput placeholder="Description"></textarea>
+                </mat-form-field>
+                </div>
+              
+
+              </div> 
+              
+              
+              </div>
+          </div>
+            
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button  mat-raised-button color='primary' (click)="addWorkExperience()" >Add work experience</button>
+       
+          </div>          
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button mat-raised-button class="mr-2" >Cancel</button>
+            <button mat-raised-button class="mr-2"  >Save</button>
+            <button mat-raised-button  matStepperPrevious class="mr-2" >Prev</button>
+            <button mat-raised-button  matStepperNext class="mr-2" >Next</button>
+          </div>
+        </form>
+         </div>
+
+
+    </mat-step>
+
+
+    <mat-step [stepControl]="fourthFormGroup">
+     
+      <div class="container align-self-center">
+        <form [formGroup]="fourthFormGroup">
+          <ng-template matStepLabel>Publication/Patent</ng-template>
+          
+            
+  
+  
+          <div class="col-sm-10 mt-4" >
+            <div class="card ">
+              <div class="card-header">
+                <mat-icon>public</mat-icon>
+              </div>
+              <div class="card-body row" *ngFor="let pub of pubList; index as i;">
+                <div class="col-12">
+                  Publication: {{i+1}}
+                  <button mat-button (click)="deletePub(i)"><mat-icon>delete</mat-icon></button>
+              
+                
+              </div>
+                <div class="col-10 mr-2">
+                  <mat-form-field style="width: 100%;">
+                    <input matInput placeholder="Title" >
+                  </mat-form-field>
+             
+                </div>
+         
+                <div class="col-10 mr-2" >
+                  <mat-form-field style="width: 100%;">
+                    <input matInput placeholder="DOI/Link" >
+                  </mat-form-field>
+                </div>
+
+                
+              
+                
+              
+
+              </div> 
+              
+              
+              </div>
+          </div>
+            
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button  mat-raised-button color='primary' (click)="addPub()" >Add publication</button>
+       
+          </div>          
+              
+  
+          <div class="mt-4 ml-4 mr-2">
+            <button mat-raised-button class="mr-2" >Cancel</button>
+            <button mat-raised-button class="mr-2"  >Save</button>
+            <button mat-raised-button  matStepperPrevious class="mr-2" >Prev</button>
+            <button mat-raised-button  matStepperNext class="mr-2" >Next</button>
+          </div>
+        </form>
+         </div>
+
+
+    </mat-step>
+
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div class="container align-self-center">
+        <div class="col-sm-10 mt-4" >
+          <div class="card ">
+            <div class="card-body row">
+              <div class='col-12'>
+                <p>You are now done.</p>
+              </div>
+            <div class="col-12">
+            
+                <mat-radio-button (click)="setAgree()">Agree</mat-radio-button>
+                     
+            </div>
+
+              
+    </div>
+      <div>
+        <button  mat-raised-button class="mr-2"  matStepperPrevious>Prev</button>
+        <button   mat-raised-button class="mr-2"  (click)="stepper.reset()">Reset</button>
+        <button *ngIf="agreed"  mat-raised-button class="mr-2"  >Submit</button>
+      </div>
+
+      </div>
+      </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+  
+
+<router-outlet></router-outlet>	

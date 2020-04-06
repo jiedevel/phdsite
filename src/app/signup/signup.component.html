@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>Signup</h1>
+<div mat-dialog-content>
+ 
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput [(ngModel)]="data.username"  required>
+    </mat-form-field>
+  
+  </div>
+<div mat-dialog-content>
+ 
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput [(ngModel)]="data.email" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+
+  </mat-form-field>
+
+</div>
+<div mat-dialog-content>
+ 
+   
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="data.password"  required>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-content>
+ 
+   
+    <mat-form-field>
+      <mat-label>Repeat your Password</mat-label>
+      <input matInput [(ngModel)]="repeatPwd"  required>
+    </mat-form-field>
+  </div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button *ngIf='canSubmit' mat-button [mat-dialog-close]="data" cdkFocusInitial>Submit</button>
+</div>
